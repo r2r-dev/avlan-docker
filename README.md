@@ -50,6 +50,7 @@ $ cat avlan.tgz | docker import - avlan:latest
 
 ## Usage
 
+### Testing 
 Run using docker-compose:
 
 * start a avlan container + its dependencies (mysql database, nginx proxy)
@@ -57,3 +58,5 @@ Run using docker-compose:
 ```console
 $ docker-compose run --service-ports --rm avlan
 ```
+
+### Production

@@ -4,7 +4,7 @@ cd $APPDIR
 set -e
 
 # TODO: figure out better way of handling remote repositories
-cp -r /repositories/avlan/* /repositories/avlan/.??* . && \
+cp -r /repositories/avlan/* /repositories/avlan/.??* .
 
 # Install default settings
 # TODO: these should be imported from default dir

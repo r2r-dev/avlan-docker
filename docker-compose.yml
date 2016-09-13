@@ -29,6 +29,8 @@ proxy:
     - "80:80"
   environment:
     - NGINX_HOST=avlan.local
+    - NGINX_PORT=80
   volumes:
     - ./avlan/webroot:/var/www/avlan:ro
-    - ./nginx/conf.d:/etc/nginx/conf.d:ro
+    - ./nginx/nginx.tmpl:/etc/nginx/nginx.tmpl:ro
+  command: /bin/bash -c "envsubst < /etc/nginx/nginx.tmpl > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"

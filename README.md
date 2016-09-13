@@ -41,7 +41,8 @@ $ docker-compose build
 $ cat nginx.tgz | docker import - nginx:1.11
 ```
 
-- **avlan**
+- **avlan**:
+hint: it is required to place avlan framework repository under avlan/config/repositories/avlan
 ```console
 $ docker-compose build avlan
   or
@@ -56,7 +57,7 @@ Run using docker-compose:
 * start a avlan container + its dependencies (mysql database, nginx proxy)
 
 ```console
-$ docker-compose run --service-ports --rm avlan
+$ docker-compose run --service-ports --rm nginx
 ```
 
 ### Production

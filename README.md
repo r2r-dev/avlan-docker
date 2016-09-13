@@ -25,32 +25,26 @@ As this project is intended to be self-contained, please build, download (3rdpar
 
 - **mysql**:
 ```console
-$ docker pull mysql:5.7
+$ docker-compose pull mysql
   or
-$ cd mysql
-$ docker build -t mysql:5.7 .
+$ docker-compose build mysql
   or
-$ cd mysql
 $ cat mysql.tgz | docker import - mysql:5.7
 ```
 
 - **nginx**:
 ```console
-$ docker pull nginx:1.11
+$ docker-compose pull nginx
   or
-$ cd nginx
-$ docker build -t nginx:1.11 .
+$ docker-compose build
   or
-$ cd nginx
 $ cat nginx.tgz | docker import - nginx:1.11
 ```
 
 - **avlan**
 ```console
-$ cd avlan
-$ docker build -t avlan:latest .
+$ docker-compose build avlan
   or
-$ cd avlan
 $ cat avlan.tgz | docker import - avlan:latest
 ```
 

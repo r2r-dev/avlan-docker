@@ -3,7 +3,8 @@
 A Docker container of Avlan.
 
 ## Installation
-Place docker-compose.yml in /opt/dockerapps/avlan/ and install service files
+ - Place docker-compose.yml in /opt/dockerapps/avlan/ and install service files
+ - Copy nginx.tmpl (from nginx/nginx.tmpl) into /opt/dockerapps/avlan/nginx
 
 As this project is intended to be self-contained, please build, download (3rdparty images) or import following images prior to first execution:
 - mysql:

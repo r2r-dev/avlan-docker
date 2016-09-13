@@ -1,5 +1,5 @@
 mysql:
-  image: mysql
+  image: mysql:5.7
   container_name: "mysql"
   environment:
     - MYSQL_ROOT_PASSWORD=avlan
@@ -8,9 +8,11 @@ mysql:
     - MYSQL_DATABASE=avlan
   volumes:
     - ./mysql:/var/lib/mysql
+  external_links:
+    - avlan:mysql.internal 
 
 avlan:
-  image: avlan
+  image: avlan:latest
   container_name: "avlan"
   ports:
     - "3000:8000"
@@ -22,8 +24,8 @@ avlan:
   external_links:
     - proxy:avlan.internal
 
-proxy:
-  image: nginx
+nginx:
+  image: nginx:1.11
   container_name: "nginx"
   ports:
     - "80:80"

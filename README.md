@@ -22,43 +22,34 @@ $ cp nginx/nginx.tmpl /opt/dockerapps/nginx
 ```
 
 As this project is intended to be self-contained, please build, download (3rdparty images) or import following images prior to first execution:
-- mysql:
+
+- **mysql**:
 ```console
 $ docker pull mysql:5.7
-```
-or
-```console
+  or
 $ cd mysql
 $ docker build -t mysql:5.7 .
-```
-or
-```console
+  or
 $ cd mysql
 $ cat mysql.tgz | docker import - mysql:5.7
 ```
 
-- nginx:
+- **nginx**:
 ```console
 $ docker pull nginx:1.11
-```
-or
-```console
+  or
 $ cd nginx
 $ docker build -t nginx:1.11 .
-```
-or
-```console
+  or
 $ cd nginx
 $ cat nginx.tgz | docker import - nginx:1.11
 ```
 
-- avlan
+- **avlan**
 ```console
 $ cd avlan
 $ docker build -t avlan:latest .
-```
-or
-```console
+  or
 $ cd avlan
 $ cat avlan.tgz | docker import - avlan:latest
 ```

@@ -20,6 +20,15 @@ $ systemctl enable docker-nginx.service
 $ mkdir /opt/dockerapps/nginx
 $ cp nginx/nginx.tmpl /opt/dockerapps/nginx
 ```
+Final layout should look like this:
+```console
+/opt/dockerapps/avlan/
+├── avlan
+├── docker-compose.yml
+├── mysql
+└── nginx
+    └── nginx.tmpl
+```
 
 As this project is intended to be self-contained, please build, download (3rdparty images) or import following images prior to first execution:
 
@@ -57,6 +66,7 @@ Run using docker-compose:
 * start a avlan container + its dependencies (mysql database, nginx proxy)
 
 ```console
+$ cd /opt/dockerapps/avlan
 $ docker-compose run --service-ports --rm nginx
 ```
 

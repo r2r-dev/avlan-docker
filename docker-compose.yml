@@ -19,6 +19,7 @@ services:
     depends_on:
       - mysql
     container_name: "avlan"
+    restart: always
     ports:
       - "3000:8000"
     links:

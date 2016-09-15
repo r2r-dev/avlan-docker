@@ -10,6 +10,20 @@ cp -r /resources/avlan/* /resources/avlan/.??* .
 # TODO: these should be imported from default dir
 cp /etc/default/avlan-config.py src/conf/settings.py
 
+# Compile engine
+cd /resources/json-cxx
+mkdir build && cd build && cmake .. && make install
+
+cd /resources/snmp++-3.3.7
+./configure && make install
+
+cd /resources/avlan-engine
+make && cp avlan /app/scripts/engine
+
+echo "/usr/local/lib" >> /etc/ld.so.conf
+ldconfig
+
+
 PYTHON=/venv/bin/python
 PIP=/venv/bin/pip
 

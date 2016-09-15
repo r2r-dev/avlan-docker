@@ -15,10 +15,6 @@ $ systemctl enable docker-avlan.service
 $ systemctl enable docker-mysql.service
 $ systemctl enable docker-nginx.service
 ```
-  - Copy nginx configuration template:
-```console
-$ mkdir /opt/dockerapps/nginx
-$ cp nginx/nginx.tmpl /opt/dockerapps/nginx
 ```
 Final layout should look like this:
 ```console
@@ -26,8 +22,7 @@ Final layout should look like this:
 ├── avlan
 ├── docker-compose.yml
 ├── mysql
-└── nginx
-    └── nginx.tmpl
+└── nginx-proxy
 ```
 
 As this project is intended to be self-contained, please build, download (3rdparty images) or import following images prior to first execution:
@@ -37,25 +32,17 @@ As this project is intended to be self-contained, please build, download (3rdpar
 $ docker-compose pull mysql
   or
 $ docker-compose build mysql
-  or
-$ cat mysql.tgz | docker import - mysql:5.7
 ```
 
 - **nginx**:
 ```console
-$ docker-compose pull nginx
-  or
-$ docker-compose build
-  or
-$ cat nginx.tgz | docker import - nginx:1.11
+$ docker-compose build nginx-proxy
 ```
 
 - **avlan**:
 hint: it is required to place avlan framework repository under avlan/config/repositories/avlan
 ```console
 $ docker-compose build avlan
-  or
-$ cat avlan.tgz | docker import - avlan:latest
 ```
 
 ## Usage
@@ -63,11 +50,11 @@ $ cat avlan.tgz | docker import - avlan:latest
 ### Testing 
 Run using docker-compose:
 
-* start a avlan container + its dependencies (mysql database, nginx proxy)
+* start a avlan container + its dependencies (mysql database, nginx-proxy)
 
 ```console
 $ cd /opt/dockerapps/avlan
-$ docker-compose run --service-ports --rm nginx
+$ docker-compose up nginx-proxy
 ```
 
 ### Production

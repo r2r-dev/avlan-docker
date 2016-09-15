@@ -11,7 +11,7 @@ services:
       - MYSQL_PASSWORD=avlan
       - MYSQL_DATABASE=avlan
     volumes:
-      - ./mysql:/var/lib/mysql
+      - ./run/mysql:/var/lib/mysql
 
   avlan:
     build: ./avlan
@@ -25,8 +25,8 @@ services:
     links:
       - mysql
     volumes:
-      - ./avlan/user_uploads:/app/user_uploads
-      - ./avlan/webroot:/app/webroot
+      - ./run/avlan/user_uploads:/app/user_uploads
+      - ./run/avlan/webroot:/app/webroot
     external_links:
       - mysql:mysql.internal
 

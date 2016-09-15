@@ -58,11 +58,11 @@ Run using docker-compose:
 * start a avlan container + its dependencies (mysql database, nginx-proxy)
 
 ```console
-$ cd INSTALL_DIR
 $ docker-compose up nginx-proxy
 ```
 
 ## Production (Linux only)
+Run using systemd service:
 ```console
 $ systemctl start docker-nginx-proxy.service
 ``` 

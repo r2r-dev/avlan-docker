@@ -50,10 +50,24 @@ INSTALL_DIR
 ### Testing 
 Run using docker-compose:
 
-* start a avlan container + its dependencies (mysql database, nginx-proxy)
-
+* start the avlan container + its dependencies (mysql database, nginx-proxy)
 ```console
 $ docker-compose up
+```
+
+* stop the avlan container + its dependencies
+```console
+$ docker-compose stop
+```
+
+* remove stopped containers
+```console
+$ docker-compose rm -v
+```
+
+* stop containers and removes containers, networks, volumes, and images created by ```up```. 
+```console
+$ docker-compose down --rmi all
 ```
 
 ## Production (Linux only)

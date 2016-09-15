@@ -2,23 +2,27 @@
 
 Avlan is a VLAN monitoring and setup tool.
 
-## Installation
-  - Place docker-compose.yml in /opt/dockerapps/avlan:
+## Installation (Linux)
+  - Place docker-compose.yml in an installation directory (reffered later on as INSTALL_DIR):
 ```console
-$ mkdir -p /opt/dockerapps/avlan
-$ cp docker-compose.yml /opt/dockerapps/avlan
+$ mkdir -p INSTALL_DIR
+$ cp docker-compose.yml INSTALL_DIR/
+```
+  - Configure and install service environment file pointing to execution directory:
+```
+$ sed -e "s#WORKING_DIRECTORY=#WORKING_DIRECTORY=INSTALL_DIR#g" -i systemd/avlan.conf
+$ cp systemd/avlan.conf /etc/sysconfig/ 
 ```
   - Install service files: 
 ```console
-$ cp **/docker-*.service /etc/systemd/system/
+$ cp systemd/docker-*.service /etc/systemd/system/
 $ systemctl enable docker-avlan.service
 $ systemctl enable docker-mysql.service
 $ systemctl enable docker-nginx.service
 ```
-```
 Final layout should look like this:
 ```console
-/opt/dockerapps/avlan/
+INSTALL_DIR
 ├── avlan
 ├── docker-compose.yml
 ├── mysql
@@ -45,7 +49,7 @@ hint: it is required to place avlan framework repository under avlan/config/repo
 $ docker-compose build avlan
 ```
 
-## Usage
+## Usage (Linux)
 
 ### Testing 
 Run using docker-compose:
@@ -53,7 +57,7 @@ Run using docker-compose:
 * start a avlan container + its dependencies (mysql database, nginx-proxy)
 
 ```console
-$ cd /opt/dockerapps/avlan
+$ cd INSTALL_DIR
 $ docker-compose up nginx-proxy
 ```
 

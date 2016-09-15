@@ -1,17 +1,18 @@
 [Unit]
-Description=Dockerized nginx-proxy
-After=docker.service
+Description=Dockerized Avlan service
+After=docker.service docker-mysql.service
 BindsTo=docker.service
 Conflicts=shutdown.target reboot.target halt.target
  
 [Service]
-Environment=APP='nginx-proxy'
+Environment=APP='avlan'
 TimeoutStartSec=0
 TimeoutStopSec=30
 Restart=always
 RestartSec=10
+EnvironmentFile=-/etc/sysconfig/avlan.conf
  
-WorkingDirectory=/opt/dockerapps/avlan/
+WorkingDirectory=$WORKING_DIRECTORY
  
 ExecStartPre=-/usr/bin/docker-compose -f docker-compose.yml kill $APP
 ExecStartPre=-/usr/bin/docker-compose -f docker-compose.yml rm $APP

@@ -5,22 +5,10 @@ Avlan is a VLAN monitoring and setup tool.
 ## Installation
 As this project is intended to be self-contained, please build, download (3rdparty images) or import following images prior to first execution:
 
-- **mysql**:
-```console
-$ docker-compose pull mysql
-  or
-$ docker-compose build mysql
-```
+**Hint: it is required to place avlan framework repository under avlan/config/repositories/avlan**
 
-- **nginx**:
 ```console
-$ docker-compose build nginx-proxy
-```
-
-- **avlan**:
-hint: it is required to place avlan framework repository under avlan/config/repositories/avlan
-```console
-$ docker-compose build avlan
+$ docker-compose build
 ```
 
 ### Permanent installation (Linux only)

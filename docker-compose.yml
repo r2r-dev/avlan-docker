@@ -1,23 +1,23 @@
 version: "2"
 
 services:
-  mysql:
-    build: ./mysql
-    image: mysql:5.7
-    container_name: "mysql"
+  avlan-mysql:
+    build: ./avlan-mysql
+    image: avlan-mysql:latest
+    container_name: "avlan-mysql"
     environment:
       - MYSQL_ROOT_PASSWORD=avlan
       - MYSQL_USER=avlan
       - MYSQL_PASSWORD=avlan
       - MYSQL_DATABASE=avlan
     volumes:
-      - ./run/mysql:/var/lib/mysql
+      - ./run/avlan-mysql:/var/lib/mysql
 
   avlan:
     build: ./avlan
     image: avlan:latest
     depends_on:
-      - mysql
+      - avlan-mysql
     container_name: "avlan"
     restart: always
     ports:
@@ -28,7 +28,7 @@ services:
       - ./run/avlan/user_uploads:/app/user_uploads
       - ./run/avlan/webroot:/app/webroot
     external_links:
-      - mysql:mysql.internal
+      - avlan-mysql:mysql.internal
 
   nginx-proxy:
     build: ./nginx-proxy

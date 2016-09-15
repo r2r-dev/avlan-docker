@@ -5,7 +5,7 @@ BindsTo=docker.service
 Conflicts=shutdown.target reboot.target halt.target
  
 [Service]
-Environment=APP='mysql'
+Environment=APP='avlan-mysql'
 TimeoutStartSec=0
 TimeoutStopSec=30
 Restart=always

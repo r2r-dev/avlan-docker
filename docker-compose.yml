@@ -23,19 +23,19 @@ services:
     ports:
       - "3000:8000"
     links:
-      - mysql
+      - avlan-mysql
     volumes:
       - ./run/avlan/user_uploads:/app/user_uploads
       - ./run/avlan/webroot:/app/webroot
     external_links:
       - avlan-mysql:mysql.internal
 
-  nginx-proxy:
-    build: ./nginx-proxy
-    image: nginx-proxy:latest
+  avlan-nginx:
+    build: ./avlan-nginx
+    image: avlan-nginx:latest
     depends_on:
       - avlan
-    container_name: "nginx"
+    container_name: "avlan-nginx"
     ports:
       - "80:80"
     environment:

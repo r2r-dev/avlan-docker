@@ -58,7 +58,7 @@ Run using docker-compose:
 * start a avlan container + its dependencies (mysql database, nginx-proxy)
 
 ```console
-$ docker-compose up nginx-proxy
+$ docker-compose up
 ```
 
 ## Production (Linux only)

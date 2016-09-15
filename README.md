@@ -2,6 +2,13 @@
 
 Avlan is a VLAN monitoring and setup tool.
 
+## Quickstart
+
+**Hint: it is required to place avlan framework repository under avlan/config/repositories/avlan**
+```console
+$ docker-compose up
+```
+
 ## Installation
 As this project is intended to be self-contained, please build, download (3rdparty images) or import following images prior to first execution:
 

@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 # Install static assets
-rm -rf /app/webroot/* && cp -r /repositories/avlan/webroot/* /app/webroot/ 
+rm -rf /app/webroot/* && cp -r /resources/avlan/webroot/* /app/webroot/ 
 
 cd /app
 /venv/bin/python manage.py syncdb --dump scripts/bootstrap.sql && \

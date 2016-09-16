@@ -6,9 +6,9 @@ Avlan is a VLAN monitoring and setup tool.
 
 Load pre-build images:
 ```console
-$ docker load -i avlan.tar
-$ docker load -i avlan-mysql.tar
-$ docker load -i avlan-nginx.tar
+$ docker load -i avlan.txz
+$ docker load -i avlan-mysql.txz
+$ docker load -i avlan-nginx.txz
 ```
 
 Start cluster:

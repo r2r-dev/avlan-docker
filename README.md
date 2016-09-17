@@ -3,10 +3,14 @@
 Avlan is a VLAN monitoring and setup tool.
 
 ## Quickstart
+Download pre-build images:
+[avlan.tar.xz](https://github.com/astachecki/avlan-docker/releases/download/0.1/avlan.tar.xz)
+[avlan-mysql.txz](https://github.com/astachecki/avlan-docker/releases/download/0.1/avlan-mysql.txz)
+[avlan-nginx.txz](https://github.com/astachecki/avlan-docker/releases/download/0.1/avlan-nginx.txz)
 
 Load pre-build images:
 ```console
-$ docker load -i avlan.txz
+$ docker load -i avlan.tar.xz
 $ docker load -i avlan-mysql.txz
 $ docker load -i avlan-nginx.txz
 ```
@@ -19,7 +23,7 @@ $ docker-compose up
 ## Installation
 As this project is intended to be self-contained, please build, download (3rdparty images) or import following images prior to first execution:
 
-**Hint: it is required to extract external repositories under avlan/config/resources directory**
+**Hint: it is required to extract [external repositories](https://github.com/astachecki/avlan-docker/releases/download/0.1/resources.tar.xz) under avlan/config/resources directory**
 
 ```console
 $ docker-compose build

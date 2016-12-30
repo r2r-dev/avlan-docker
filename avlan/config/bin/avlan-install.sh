@@ -11,17 +11,17 @@ cp -r /resources/avlan/* /resources/avlan/.??* .
 cp /etc/default/avlan-config.py src/conf/settings.py
 
 # Compile engine
-cd /resources/json-cxx
-mkdir build && cd build && cmake .. && make install
+# cd /resources/json-cxx
+# mkdir build && cd build && cmake .. && make install
 
-cd /resources/snmp++-3.3.7
-./configure && make install
+# cd /resources/snmp++-3.3.7
+# ./configure && make install
 
-cd /resources/avlan-engine
-make && cp avlan /app/scripts/engine
+# cd /resources/avlan-engine
+# make && cp avlan /app/resources/engine
 
-echo "/usr/local/lib" >> /etc/ld.so.conf
-ldconfig
+# echo "/usr/local/lib" >> /etc/ld.so.conf
+# ldconfig
 
 
 PYTHON=/venv/bin/python
@@ -29,7 +29,7 @@ PIP=/venv/bin/pip
 
 $PIP install -U \
     --allow-external bzr --allow-unverified bzr \
-    -r $APPDIR/scripts/requirements.txt
+    -r $APPDIR/resources/requirements.txt
 
 chown -R py $APPDIR
 

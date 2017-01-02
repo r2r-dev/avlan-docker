@@ -31,6 +31,8 @@ $PIP install -U \
     --allow-external bzr --allow-unverified bzr \
     -r $APPDIR/resources/requirements.txt
 
+# Create persistent storage directory
+mkdir $APPDIR/storage
 chown -R py $APPDIR
 
 # temporarily append self-signed certificate

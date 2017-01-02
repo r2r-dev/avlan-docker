@@ -25,7 +25,7 @@ services:
     links:
       - avlan-mysql
     volumes:
-      - ./run/avlan/user_uploads:/app/user_uploads
+      - ./run/avlan/storage:/app/storage
       - ./run/avlan/webroot:/app/webroot
     external_links:
       - avlan-mysql:mysql.internal

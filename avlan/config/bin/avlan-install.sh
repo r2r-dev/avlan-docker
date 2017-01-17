@@ -17,7 +17,8 @@ $PIP install -U \
     --allow-external bzr --allow-unverified bzr \
     -r $APPDIR/resources/requirements.txt
 
-$PYTHON /resources/netmiko/setup.py install
+cd /resources/netmiko
+$PYTHON setup.py install
 
 # Create persistent storage directory
 mkdir $APPDIR/storage

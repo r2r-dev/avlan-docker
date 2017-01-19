@@ -13,7 +13,7 @@ $PIP install -U \
     --allow-external bzr --allow-unverified bzr \
     -r requirements.txt
 
-$PIP install netmiko
+$PIP install ./netmiko
 
 # Save webroot dir for later re-mounting
 mv webroot webroot.bak

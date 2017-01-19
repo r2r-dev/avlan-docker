@@ -37,11 +37,13 @@ RUN virtualenv /venv
 # Add user py
 RUN adduser --gecos 'py' --disabled-password py
 
-RUN rm -fr $APPDIR && mkdir -p $APPDIR && cd /tmp
+RUN rm -fr ${DOLLAR}APPDIR && mkdir -p ${DOLLAR}APPDIR && cd /tmp
 
-# Use unique cache argument to enforce re-creation of new layer
-ARG cachebust=1
 ADD config /
+RUN /venv/bin/pip install -r requirements.txt
+# Use unique cache argument to enforce re-creation of new layer
+ARG cachebust=${EPOCH}
+ADD app /
 
 RUN /bin/avlan-install.sh
 

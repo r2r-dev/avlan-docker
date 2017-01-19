@@ -2,18 +2,15 @@
 cd $APPDIR
 
 set -e
+set -x
 
 # Install default settings
 cp /etc/default/avlan-config.py src/conf/settings.py
 
 # Install dependencies
-PIP=/venv/bin/pip
+cd ${APPDIR}/netmiko
+/venv/bin/python setup.py install
 
-$PIP install -U \
-    --allow-external bzr --allow-unverified bzr \
-    -r requirements.txt
-
-$PIP install ./netmiko
-
+cd ${APPDIR}
 # Save webroot dir for later re-mounting
 mv webroot webroot.bak

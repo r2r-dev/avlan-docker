@@ -21,10 +21,7 @@ services:
       - "${REDIS_PORT}:${REDIS_PORT}"
 
   avlan:
-    build: 
-        context: ${SETUP_DIR}/docker/avlan
-        args:
-           cachebust: ${EPOCH}
+    build: ${SETUP_DIR}/docker/avlan
     image: avlan:latest
     depends_on:
       - avlan-mysql

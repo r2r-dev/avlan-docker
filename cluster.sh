@@ -44,11 +44,16 @@ function prepare_config() {
 function prepare_production_cluster() {
   prepare_config
 
+  rm -rf ./docker/avlan/app
+  rm -rf ./docker/avlan/Dockerfile
+
   # Install latest version of the app
-  cp -r ./app ./docker/avlan/config/
+  cat ./docker/avlan/Dockerfile.tmpl | envsubst > ./docker/avlan/Dockerfile
+  cp -r ./app ./docker/avlan/app
 
   build_cluster
-  rm -rf ./docker/avlan/config/app
+  rm -rf ./docker/avlan/app
+  rm ./docker/avlan/Dockerfile
 }
 
 function build_cluster() {

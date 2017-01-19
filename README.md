@@ -1,6 +1,6 @@
 # AVLAN
 
-Avlan is a VLAN monitoring and setup tool.
+Avlan is a VLAN monitoring tool.
 
 ## Running application in production mode (full cluster)
 To build container images and start AVLAN application cluster with default settings, execute:
@@ -26,7 +26,7 @@ $ cd app
 $ pip install -r requirements.txt
 $ pip install ./netmiko
 ```
- * Set application settings according to configuration specified in 'conf/debug_cluster.conf' file
+ * Set application settings according to configuration specified in ```conf/debug_cluster.conf``` file
 ```console
 $ cd app
 $ vi src/conf/settings.py
@@ -36,7 +36,7 @@ $ vi src/conf/settings.py
 $ cd app
 $ python manage.py syncdb --dump resources/bootstrap.sql
 ```
- * Execute application using Gunicorn WSGI server, supplying the same application port as APP_PORT variable in 'conf/debug_cluster.conf' file:
+ * Execute application using Gunicorn WSGI server, supplying the same application port as ```APP_PORT``` variable in ```conf/debug_cluster.conf``` file:
 ```console
 $ source conf/debug_cluster.conf
 $ cd app
@@ -47,8 +47,8 @@ $ gunicorn -b 0.0.0.0:${APP_PORT} --workers 3 --timeout 3600 __init__:applicatio
 ## Installation
 To install cluster permanently as a set of systemd services:
 
-* Set installation directory (INSTALL_DIR) variable in 'conf/install_cluster.conf' file
-* As root, execute installation using 'cluster.sh' script:
+* Set installation directory ```INSTALL_DIR``` variable in ```conf/install_cluster.conf``` file
+* As root, execute installation using ```cluster.sh``` script:
 ```console
 # cluster.sh -i
 ```
@@ -63,7 +63,7 @@ $ systemctl start docker-avlan-nginx.service
 ``` 
 
 ### Troubleshooting
-* stop containers and removes containers, networks, volumes, and images created by ```up```. 
+Stop containers and removes containers, networks, volumes, and images created by previous cluster executions:
 ```console
 $ cluster.sh -c
 ```

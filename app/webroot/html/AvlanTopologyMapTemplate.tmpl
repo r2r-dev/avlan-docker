@@ -1,0 +1,55 @@
+{{if _full}}
+<!DOCTYPE html>
+<html>
+
+    <head>
+    	<meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    	<title>Avlan: {{title}}</title>
+    	<meta name="description" content="Avlan: Orchestration made simple">
+    	<meta name="author" content="Artur Stachecki">
+    	<link rel="shortcut icon" href="../img/favicon.ico">
+    	<link rel="stylesheet" type="text/css" href="../css/dark.css">
+    	<link rel="stylesheet" type="text/css" href="../css/vis.css">
+
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="content">
+				{{endif}}
+			    <div id="containerbox">
+			        <div id="controlbox">
+			            <div class="optionsbox top">
+			        		<button type="button" class="optionsbutton modal-trigger" data-link="/topology/node/create">Add Node</button>
+			        		<button type="button" class="optionsbutton modal-trigger" data-link="/topology/node/[id]/delete">Delete Node</button>
+			        	</div>
+			            <div class="optionsbox">
+			        		<button type="button" class="optionsbutton modal-trigger" data-link="/topology/node/[id]/edge/create">Add Edge</button>
+			        		<button type="button" class="optionsbutton modal-trigger" data-link="/topology/node/[id]/edge/delete">Delete Edge</button>
+			        	</div>
+			        	<div class="optionsbox">
+			        		<button type="button" class="optionsbutton" id="physicsON" onclick="PhyOn()">Enable Physics</button>
+			        		<button type="button" class="optionsbutton" id="physicsOFF" onclick="PhyOff()">Disable Physics</button>
+			        	</div>
+			        	<div class="optionsbox">
+			        		<button type="button" class="optionsbutton" id="hierarchyLR" onclick="HierarchyLROn()">Vertical Hierarchy</button>
+			        		<button type="button" class="optionsbutton" id="hierarchyUD" onclick="HierarchyUDOn()">Horizontal Hierarchy</button>
+			        		<button type="button" class="optionsbutton" id="hierarchOFF" onclick="HierarchyOff()">Disable Hierarchy</button>
+			        	</div>
+			        	<div id="vlanbox">
+			        		<div id="vlanbox-container"></div>
+			        	</div>
+			        </div>
+			    <div id="networkbox"></div>
+			    {{if _full}}
+		    </div>
+            <div class="modal-overlay"></div>
+        </div>
+		<script type="text/javascript" src="../js/common.js?{{_random}}"></script>
+		<script type="text/javascript" src="../js/spin.js?{{_random}}"></script>
+		<script type="text/javascript" src="../js/vis.js?{{_random}}"></script>
+		<script type="text/javascript" src="../js/network.js?{{_random}}"></script>
+    </body>
+</html>
+{{endif}}

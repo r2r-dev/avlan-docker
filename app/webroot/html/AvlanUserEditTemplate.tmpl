@@ -1,0 +1,93 @@
+{{if _full}}
+<!DOCTYPE html>
+<html>
+
+    <head>
+    	<meta charset="UTF-8">
+    	<title>Avlan: {{title}}</title>
+    	<meta name="description" content="Avlan: Orchestration made simple">
+    	<meta name="author" content="Artur Stachecki">
+    	<link rel="shortcut icon" href="../img/favicon.ico">
+    	<link rel="stylesheet" type="text/css" href="../css/dark.css">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="content">
+				{{endif}}
+                <div class="modal-content" {{if _full}}style="opacity: 1"{{endif}}>
+                    {{if error}}
+                    <div class="notification error">{{error}}</div>
+                    {{endif}}
+                    {{if message}}
+                    <div class="notification message">{{message}}</div>
+                    {{endif}}
+                    <form class="modal-form" data-link="/user/{{_user.id}}/edit">
+                        <div class="line">
+                            <label for="username">{{username}}</label>
+                            <div class="input">
+                                <input type="text" size="30" id="username" value={{_user.username}} disabled>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <label for="password">{{password}}</label>
+                            <div class="input">
+                                <input type="password" size="30" id="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;">
+                            </div>
+                        </div>
+                        <div class="line">
+                            <label for="language">{{language}}</label>
+                            <div class="input">
+                                <select id="language">
+                                    {{for language_setting in _settings['language']}}
+                                        {{if language_setting == _user_settings['language']}}
+                                        <option selected>{{language_setting}}</option>
+                                        {{else}}
+                                        <option>{{language_setting}}</option>
+                                        {{endif}}
+                                    {{endfor}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <label for="color">{{color}}</label>
+                            <div class="input">
+                                <select id="color">
+                                    {{for color_setting in _settings['color']}}
+                                        {{if color_setting == _user_settings['color']}}
+                                        <option selected>{{color_setting}}</option>
+                                        {{else}}
+                                        <option>{{color_setting}}</option>
+                                        {{endif}}
+                                    {{endfor}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <label for="image">Image</label>
+                            <div class="input">
+                                <input type="file" id="image">
+                            </div>
+                        </div>
+                        <div class="input">
+                            <input type="hidden" id="image_id" value="{{_user_settings['image']}}">
+                        </div>
+                        <div class="submit">
+                            <button type="button" class="modal-button modal-submit">
+                                <span class="action-text">{{save}}</span>
+                            </button>
+                            <button type="button" class="modal-button modal-close">
+                                <span class="action-text">{{close}}</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+				{{if _full}}
+            </div>
+        	<div class="modal-overlay"></div>
+        </div>
+        <script src="../js/spin.js"></script>
+        <script src="../js/main.js"></script>
+    </body>
+</html>
+{{endif}}

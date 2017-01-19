@@ -1,0 +1,56 @@
+{{if _full}}
+<!DOCTYPE html>
+<html>
+
+    <head>
+    	<meta charset="UTF-8">
+    	<title>Avlan: {{title}}</title>
+    	<meta name="description" content="Avlan: Orchestration made simple">
+    	<meta name="author" content="Artur Stachecki">
+    	<link rel="shortcut icon" href="../img/favicon.ico">
+    	<link rel="stylesheet" type="text/css" href="../css/dark.css">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="content">
+				{{endif}}
+        		<ul class="tiles">
+                    {{for user in _users}}
+        			<li class="tile">
+                        <div class="front">
+                            {{if _users_settings[user.id]['image']}}
+                            <img class="circular" src="../img/user/{{_users_settings[user.id]['image']}}/avatar">
+                            {{else}}
+						    <div class="icon icon-person"></div>
+                            {{endif}}
+        				    <div class="title">{{user.username}}</div>
+                        </div>
+                        <div class="back hidden">
+                            <ul class="tile-nav">
+                                <li class="tile-link modal-trigger" data-link="/user/{{user.id}}">
+                                    <div class="tile-icon icon-person"></div>
+                                    <a href="#">Details</a>
+                                </li>
+                                <li class="tile-link modal-trigger" data-link="/user/{{user.id}}/edit">
+                                    <div class="tile-icon icon-settings"></div>
+                                    <a href="#">Edit</a>
+                                </li>
+                                <li class="tile-link modal-trigger" data-link="/user/{{user.id}}/delete">
+                                    <div class="tile-icon icon-bin"></div>
+                                    <a href="#">Delete</a>
+                                </li>
+                            </ul>
+                        </div>
+        			</li>
+                    {{endfor}}
+        		</ul>
+				{{if _full}}
+            </div>
+        	<div class="modal-overlay"></div>
+        </div>
+        <script src="../js/spin.js"></script>
+        <script src="../js/main.js"></script>
+    </body>
+</html>
+{{endif}}

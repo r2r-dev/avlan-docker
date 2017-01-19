@@ -1,0 +1,12 @@
+<tbody>
+  <th>{{number}}</th>
+  <th>{{name}}</th>
+  <th>{{pvid}}</th>
+  {{for vlan in _vlans}}
+  <tr>
+    <td>{{vlan['number']}}</td>
+    <td>{{vlan['name']}}</td>
+    <td>{{vlan['is_pvid']}}</td>
+  </tr>
+  {{endfor}}
+</tbody>

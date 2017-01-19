@@ -1,0 +1,24 @@
+*.pyc
+*.swp
+tests/old_format/DEVICE_CREDS.py
+tests/test_prep.sh
+tests/testx.txt
+tests/standard_tests.sh
+tests/etc/test_devices.yml
+tests/etc/commands.yml
+tests/etc/responses.yml
+examples/SECRET_DEVICE_CREDS.py
+./build
+./build/*
+build/
+dist
+netmiko.egg-info
+.cache
+bin/.netmiko.cfg
+.vscode/*
+
+# Sphinx documentation
+docs/build/doctrees/
+
+# Tox
+.tox/*

@@ -48,8 +48,9 @@ services:
     environment:
       - NGINX_HOST=avlan.local
       - NGINX_PORT=80
+      - APP_PORT=8000
     volumes_from:
       - avlan:ro
     external_links:
       - avlan:avlan.internal
-    command: /bin/bash -c "envsubst '$$NGINX_HOST $$NGINX_PORT' < /etc/nginx/nginx.tmpl > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
+    command: /bin/bash -c "envsubst '$$APP_PORT $$NGINX_HOST $$NGINX_PORT' < /etc/nginx/nginx.tmpl > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"

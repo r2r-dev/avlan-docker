@@ -1,0 +1,39 @@
+version: "2"
+
+services:
+  avlan-mysql:
+    build: ${INSTALL_DIR}/docker/avlan-mysql
+    image: avlan-mysql:latest
+    container_name: "avlan-mysql"
+    ports:
+      - "${MYSQL_PORT}:${MYSQL_PORT}"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    volumes:
+      - ${INSTALL_DIR}/run/debug/mysql/:/var/lib/mysql
+
+  avlan-redis:
+    build: ${INSTALL_DIR}/docker/avlan-redis
+    image: avlan-redis:latest
+    container_name: "avlan-redis"
+    ports:
+      - "${REDIS_PORT}:${REDIS_PORT}"
+
+  avlan-nginx:
+    build: ${INSTALL_DIR}/docker/avlan-nginx
+    image: avlan-nginx:latest
+    container_name: "avlan-nginx"
+    ports:
+      - "${NGINX_HTTP_PORT}:${NGINX_HTTP_PORT}"
+      - "${NGINX_HTTPS_PORT}:${NGINX_HTTPS_PORT}"
+    environment:
+      - NGINX_HOST=${NGINX_HOSTNAME}
+      - NGINX_PORT=${NGINX_HTTP_PORT}
+      - APP_PORT=${APP_PORT}
+      - APP_HOST=${DOCKERHOST}
+    volumes:
+      - ${INSTALL_DIR}/app/webroot:/app/webroot
+    command: /bin/bash -c "envsubst '${DOLLAR}${DOLLAR}APP_HOST ${DOLLAR}${DOLLAR}APP_PORT ${DOLLAR}${DOLLAR}NGINX_HOST ${DOLLAR}${DOLLAR}NGINX_PORT' < /etc/nginx/nginx.tmpl > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"

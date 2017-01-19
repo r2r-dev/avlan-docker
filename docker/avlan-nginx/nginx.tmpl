@@ -14,7 +14,7 @@ http {
   sendfile off;
 
   upstream app_server {
-    server avlan.internal:8000 fail_timeout=0;
+    server ${APP_HOST}:${APP_PORT} fail_timeout=0;
   }
 
   server {

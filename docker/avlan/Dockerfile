@@ -46,4 +46,3 @@ RUN /bin/avlan-install.sh
 # Docker config
 EXPOSE 8000
 VOLUME ["/app"]
-CMD ["/bin/avlan-start.sh"]

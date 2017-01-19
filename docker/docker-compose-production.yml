@@ -1,0 +1,70 @@
+version: "2"
+
+services:
+  avlan-mysql:
+    build: ${INSTALL_DIR}/docker/avlan-mysql
+    image: avlan-mysql:latest
+    container_name: "avlan-mysql"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_PORT}
+    volumes:
+      - ${INSTALL_DIR}/run/production/mysql/:/var/lib/mysql
+
+  avlan-redis:
+    build: ${INSTALL_DIR}/docker/avlan-redis
+    image: avlan-redis:latest
+    container_name: "avlan-redis"
+    ports:
+      - "${REDIS_PORT}:${REDIS_PORT}"
+
+  avlan:
+    build: ${INSTALL_DIR}/docker/avlan
+    image: avlan:latest
+    depends_on:
+      - avlan-mysql
+      - avlan-redis
+    container_name: "avlan"
+    restart: always
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    environment:
+      - MYSQL_HOST=mysql.internal
+      - MYSQL_PORT=${MYSQL_PORT}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_PORT}
+      - REDIS_HOST=redis.internal
+      - REDIS_PORT=${REDIS_PORT}
+    links:
+      - avlan-mysql
+    volumes:
+      - ${INSTALL_DIR}/run/production/avlan/storage:/app/storage
+      - ${INSTALL_DIR}/run/production/avlan/webroot:/app/webroot
+    external_links:
+      - avlan-mysql:mysql.internal
+      - avlan-redis:redis.internal
+    command: /bin/avlan-start.sh
+
+  avlan-nginx:
+    build: ${INSTALL_DIR}/docker/avlan-nginx
+    image: avlan-nginx:latest
+    depends_on:
+      - avlan
+    container_name: "avlan-nginx"
+    ports:
+      - "${NGINX_HTTP_PORT}:${NGINX_HTTP_PORT}"
+      - "${NGINX_HTTPS_PORT}:${NGINX_HTTPS_PORT}"
+    environment:
+      - NGINX_HOST=${NGINX_HOSTNAME}
+      - NGINX_PORT=${NGINX_HTTP_PORT}
+      - APP_PORT=${APP_PORT}
+      - APP_HOST=avlan.internal
+    volumes_from:
+      - avlan:ro
+    external_links:
+      - avlan:avlan.internal
+    command: /bin/bash -c "envsubst '${DOLLAR}${DOLLAR}APP_HOST ${DOLLAR}${DOLLAR}APP_PORT ${DOLLAR}${DOLLAR}NGINX_HOST ${DOLLAR}${DOLLAR}NGINX_PORT' < /etc/nginx/nginx.tmpl > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"

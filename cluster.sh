@@ -57,6 +57,8 @@ function prepare_production_cluster() {
 }
 
 function build_cluster() {
+  docker rm $(docker ps -q -f status=exited) || true
+  docker rmi $(docker images -q -f "dangling=true") || true
   docker-compose -f "${TEMP_CONFIG}" stop
   docker rm avlan avlan-mysql avlan-nginx avlan-redis || true
   docker-compose -f "${TEMP_CONFIG}" rm --force -v

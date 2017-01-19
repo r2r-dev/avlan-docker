@@ -39,6 +39,8 @@ RUN adduser --gecos 'py' --disabled-password py
 
 RUN rm -fr $APPDIR && mkdir -p $APPDIR && cd /tmp
 
+# Use unique cache argument to enforce re-creation of new layer
+ARG cachebust=1
 ADD config /
 
 RUN /bin/avlan-install.sh

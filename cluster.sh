@@ -2,6 +2,7 @@
 set -e
 
 export DOLLAR='$'
+export EPOCH="$(date +%s%3N)"
 export TEMP_CONFIG="$(mktemp)"
 
 function run_debug_cluster() {

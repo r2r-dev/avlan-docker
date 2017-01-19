@@ -1,5 +1,5 @@
 #!/bin/bash -x
-cd $APPDIR
+cd /app
 
 # Restore webroot directory
 mv webroot.bak/* webroot/

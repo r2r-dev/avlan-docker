@@ -43,7 +43,7 @@ ADD config /
 RUN /venv/bin/pip install -r requirements.txt
 # Use unique cache argument to enforce re-creation of new layer
 ARG cachebust=${EPOCH}
-ADD app /
+ADD app /app
 
 RUN /bin/avlan-install.sh
 

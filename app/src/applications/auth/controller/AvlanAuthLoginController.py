@@ -39,7 +39,10 @@ class AvlanAuthLoginController(AvlanBaseController):
             return response
         else:
             # TODO: move translations handling to BaseController
-            translation = list(self.request.accept_language)[0]
+            try:
+                translation = list(self.request.accept_language)[0]
+            except IndexError:
+                translation = None
             view = AvlanAuthLoginView(translation)
             view.error = "Unauthorized"
             response = Response()

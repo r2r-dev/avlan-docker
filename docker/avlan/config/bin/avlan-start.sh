@@ -2,7 +2,7 @@
 cd /app
 
 # Restore webroot directory
-mv webroot.bak/* webroot/
+cp -r webroot.bak/* webroot/
 rm -rf webroot.bak
 
 /venv/bin/python manage.py syncdb --dump resources/bootstrap.sql && \

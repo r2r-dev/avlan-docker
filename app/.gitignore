@@ -1,6 +1,0 @@
-*.pyc
-.idea
-webroot/img/user/*
-*.key
-sessionsdata
-storage

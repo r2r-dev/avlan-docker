@@ -1,0 +1,303 @@
+{
+  "nodes": [
+    {
+      "id": 1,
+      "name": "R1",
+      "type": "edgecore",
+      "ipAddress": "127.0.0.1",
+      "sshPort": 9991,
+      "sshUsername": "R1",
+      "sshPassword": "R1",
+      "interfaces": [
+        {
+          "id": 1,
+          "peerNodeId": 2,
+          "peerIfaceId": 4,
+          "mac": "FB:3B:A5:0F:A6:4D",
+          "vlans": [
+            {
+              "number": 1,
+              "name": "V1",
+              "pvid": true
+            },
+            {
+              "number": 4,
+              "name": "V4"
+            },
+            {
+              "number": 5,
+              "name": "V5"
+            }
+          ],
+          "ifaceIndex": "Eth 1/2"
+        },
+        {
+          "id": 2,
+          "peerNodeId": 3,
+          "peerIfaceId": 8,
+          "ifaceIndex": "Eth 1/3",
+          "mac": "3B:EC:32:B0:4E:24",
+          "vlans": [
+            {
+              "number": 1,
+              "name": "V1",
+              "pvid": true
+            },
+            {
+              "number": 2,
+              "name": "V2"
+            },
+            {
+              "number": 4,
+              "name": "V4"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "peerNodeId": 4,
+          "peerIfaceId": 12,
+          "ifaceIndex": "Eth 1/4",
+          "mac": "86:C4:76:22:D7:99",
+          "vlans": [
+            {
+              "number": 2,
+              "name": "V2"
+            },
+            {
+              "number": 5,
+              "name": "V5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "R2",
+      "type": "edgecore",
+      "ipAddress": "127.0.0.1",
+      "sshPort": 9992,
+      "sshUsername": "R2",
+      "sshPassword": "R2",
+      "interfaces": [
+        {
+          "id": 4,
+          "peerNodeId": 1,
+          "peerIfaceId": 1,
+          "ifaceIndex": "Eth 1/2",
+          "mac": "EF:67:AE:B5:63:CA",
+          "vlans": [
+            {
+              "number": 1,
+              "name": "V1",
+              "pvid": true
+            },
+            {
+              "number": 4,
+              "name": "V4"
+            },
+            {
+              "number": 5,
+              "name": "V5"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "peerNodeId": 4,
+          "peerIfaceId": 11,
+          "ifaceIndex": "Eth 1/3",
+          "mac": "C5:06:D0:1B:E4:D3",
+          "vlans": [
+            {
+              "number": 1,
+              "name": "V1",
+              "pvid": true
+            },
+            {
+              "number": 3,
+              "name": "V3"
+            },
+            {
+              "number": 5,
+              "name": "V5"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "peerNodeId": 3,
+          "peerIfaceId": 9,
+          "ifaceIndex": "Eth 1/4",
+          "mac": "9A:6F:E3:CC:FE:F9",
+          "vlans": [
+            {
+              "number": 3,
+              "name": "V3"
+            },
+            {
+              "number": 4,
+              "name": "V4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "R3",
+      "type": "edgecore",
+      "ipAddress": "127.0.0.1",
+      "sshPort": 9993,
+      "sshUsername": "R3",
+      "sshPassword": "R3",
+      "interfaces": [
+        {
+          "id": 7,
+          "peerNodeId": 4,
+          "peerIfaceId": 10,
+          "ifaceIndex": "Eth 1/2",
+          "mac": "16:F4:DC:5C:D0:CA",
+          "vlans": [
+            {
+              "number": 1,
+              "name": "V1",
+              "pvid": true
+            },
+            {
+              "number": 2,
+              "name": "V2"
+            },
+            {
+              "number": 3,
+              "name": "V3"
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "peerNodeId": 1,
+          "peerIfaceId": 2,
+          "ifaceIndex": "Eth 1/3",
+          "mac": "A2:26:5D:40:0E:56",
+          "vlans": [
+            {
+              "number": 1,
+              "name": "V1",
+              "pvid": true
+            },
+            {
+              "number": 2,
+              "name": "V2"
+            },
+            {
+              "number": 4,
+              "name": "V4"
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "peerNodeId": 2,
+          "peerIfaceId": 6,
+          "ifaceIndex": "Eth 1/4",
+          "mac": "03:03:31:82:82:EB",
+          "vlans": [
+            {
+              "number": 3,
+              "name": "V3"
+            },
+            {
+              "number": 4,
+              "name": "V4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "R4",
+      "type": "edgecore",
+      "ipAddress": "127.0.0.1",
+      "sshPort": 9994,
+      "sshUsername": "R4",
+      "sshPassword": "R4",
+      "interfaces": [
+        {
+          "id": 10,
+          "peerNodeId": 3,
+          "peerIfaceId": 7,
+          "ifaceIndex": "Eth 1/2",
+          "mac": "BD:0D:1E:23:62:E4",
+          "vlans": [
+            {
+              "number": 1,
+              "name": "V1",
+              "pvid": true
+            },
+            {
+              "number": 2,
+              "name": "V2"
+            },
+            {
+              "number": 3,
+              "name": "V3"
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "peerNodeId": 2,
+          "peerIfaceId": 5,
+          "ifaceIndex": "Eth 1/3",
+          "mac": "20:17:C5:29:66:4F",
+          "vlans": [
+            {
+              "number": 1,
+              "name": "V1",
+              "pvid": true
+            },
+            {
+              "number": 3,
+              "name": "V3"
+            },
+            {
+              "number": 5,
+              "name": "V5"
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "peerNodeId": 1,
+          "peerIfaceId": 3,
+          "ifaceIndex": "Eth 1/4",
+          "mac": "32:80:FA:A0:5A:13",
+          "vlans": [
+            {
+              "number": 2,
+              "name": "V2"
+            },
+            {
+              "number": 5,
+              "name": "V5"
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "ifaceIndex": "Eth 1/5",
+          "mac": "7C:51:52:99:BD:1D",
+          "vlans": [
+            {
+              "number": 8,
+              "name": "V8"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

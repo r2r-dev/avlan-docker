@@ -1,0 +1,64 @@
+{
+    "nodes": [
+        {
+            "name": "R1",
+            "type": "hp_procurve",
+            "interfaces": [],
+            "sshPort": 9991,
+            "sshUsername": "R1",
+            "ipAddress": "127.0.0.1",
+            "id": 1,
+            "sshPassword": "R1"
+        },
+        {
+            "name": "R2",
+            "type": "hp_procurve",
+            "interfaces": [],
+            "sshPort": 9992,
+            "sshUsername": "R2",
+            "ipAddress": "127.0.0.1",
+            "id": 2,
+            "sshPassword": "R2"
+        },
+        {
+            "name": "R3",
+            "type": "hp_procurve",
+            "interfaces": [],
+            "sshPort": 9993,
+            "sshUsername": "R3",
+            "ipAddress": "127.0.0.1",
+            "id": 3,
+            "sshPassword": "R3"
+        },
+        {
+            "name": "R4",
+            "type": "hp_procurve",
+            "interfaces": [],
+            "sshPort": 9994,
+            "sshUsername": "R4",
+            "ipAddress": "127.0.0.1",
+            "id": 4,
+            "sshPassword": "R4"
+        },
+        {
+            "name": "R5",
+            "type": "edgecore",
+            "interfaces": [],
+            "sshPort": 9995,
+            "sshUsername": "R5",
+            "ipAddress": "127.0.0.1",
+            "id": 5,
+            "sshPassword": "R5"
+        },
+        {
+            "name": "R6",
+            "type": "edgecore",
+            "interfaces": [],
+            "sshPort": 9996,
+            "sshUsername": "R6",
+            "ipAddress": "127.0.0.1",
+            "id": 6,
+            "sshPassword": "R6"
+        }
+    ]
+}

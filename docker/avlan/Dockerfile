@@ -43,6 +43,4 @@ ADD config /
 
 RUN /bin/avlan-install.sh
 
-# Docker config
-EXPOSE 8000
 VOLUME ["/app"]

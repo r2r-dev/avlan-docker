@@ -1,99 +1,69 @@
-# Avlan
+# AVLAN
 
 Avlan is a VLAN monitoring and setup tool.
 
-## Quickstart
-Download pre-build images:
-[avlan.tar.xz](https://github.com/astachecki/avlan-docker/releases/download/0.1/avlan.tar.xz)
-[avlan-mysql.txz](https://github.com/astachecki/avlan-docker/releases/download/0.1/avlan-mysql.txz)
-[avlan-redis.txz](https://github.com/astachecki/avlan-docker/releases/download/0.1/avlan-redis.txz)
-[avlan-nginx.txz](https://github.com/astachecki/avlan-docker/releases/download/0.1/avlan-nginx.txz)
-
-Load pre-build images:
+## Running application in production mode (full cluster)
+To build container images and start AVLAN application cluster with default settings, execute:
 ```console
-$ docker load -i avlan.tar.xz
-$ docker load -i avlan-mysql.txz
-$ docker load -i avlan-redis.txz
-$ docker load -i avlan-nginx.txz
+$ ./cluster.sh -p
 ```
 
-Start cluster:
+## Running application in debug mode (partial cluster)
+To build container images and start cluster without AVLAN application image, execute:
 ```console
-$ docker-compose up
+$ ./cluster.sh -d
+```
+To run instance of AVLAN application on host system:
+ * Ensure first that you have following system packages installed (Debian naming convention):
+```console
+python libxml2-dev libxslt1-dev expat libevent-dev wget python-dev
+texlive texlive-latex-extra language-pack-en unzip git python-pip
+zlib1g-dev lib32z1-dev libpq-dev gettext curl latex2html libmysqlclient-dev 
+```
+ * Install required python modules from application directory:
+```console
+$ cd app
+$ pip install -r requirements.txt
+$ pip install ./netmiko
+```
+ * Set application settings according to configuration specified in 'conf/debug_cluster.conf' file
+```console
+$ cd app
+$ vi src/conf/settings.py
+```
+ * Create database structure and create default entries:
+```console
+$ cd app
+$ python manage.py syncdb --dump resources/bootstrap.sql
+```
+ * Execute application using Gunicorn WSGI server, supplying the same application port as APP_PORT variable in 'conf/debug_cluster.conf' file:
+```console
+$ source conf/debug_cluster.conf
+$ cd app
+$ gunicorn -b 0.0.0.0:${APP_PORT} --workers 3 --timeout 3600 __init__:application
+
 ```
 
 ## Installation
-As this project is intended to be self-contained, please build, download (3rdparty images) or import following images prior to first execution:
+To install cluster permanently as a set of systemd services:
 
-**Hint: it is required to extract avlan application repository and netmiko module under avlan/config/resources directory**
+* Set installation directory (INSTALL_DIR) variable in 'conf/install_cluster.conf' file
+* As root, execute installation using 'cluster.sh' script:
 ```console
-avlan
-└── config
-    └── resources
-        ├── avlan
-        └── netmiko
-```
-
-```console
-$ docker-compose build
-```
-
-### Permanent installation (Linux only)
-  - Place docker-compose.yml in an installation directory (reffered later on as INSTALL_DIR):
-```console
-$ mkdir -p INSTALL_DIR
-$ cp docker-compose.yml INSTALL_DIR/
-```
-  - Configure and install service environment file pointing to execution directory:
-```
-$ sed -e "s#WORKING_DIRECTORY=#WORKING_DIRECTORY=INSTALL_DIR#g" -i systemd/avlan.conf
-$ cp systemd/avlan.conf /etc/sysconfig/ 
-```
-  - Install service files: 
-```console
-$ cp systemd/docker-*.service /etc/systemd/system/
-$ systemctl enable docker-avlan.service
-$ systemctl enable docker-mysql.service
-$ systemctl enable docker-redis.service
-$ systemctl enable docker-nginx.service
-```
-Final layout should look like this:
-```console
-INSTALL_DIR
-├── avlan
-├── docker-compose.yml
-├── mysql
-├── redis
-└── nginx-proxy
+# cluster.sh -i
 ```
 
 ## Usage
-
-### Testing 
-Run using docker-compose:
-
-* start the avlan container + its dependencies (mysql database, redis database, nginx-proxy)
+Reboot system or run using systemd service manually:
 ```console
-$ docker-compose up
-```
+$ systemctl start docker-avlan-mysql.service
+$ systemctl start docker-avlan-redis.service
+$ systemctl start docker-avlan.service
+$ systemctl start docker-avlan-nginx.service
+``` 
 
-* stop the avlan container + its dependencies
-```console
-$ docker-compose stop
-```
-
-* remove stopped containers
-```console
-$ docker-compose rm -v
-```
-
+### Troubleshooting
 * stop containers and removes containers, networks, volumes, and images created by ```up```. 
 ```console
-$ docker-compose down --rmi all
+$ cluster.sh -c
 ```
-
-## Production (Linux only)
-Run using systemd service:
-```console
-$ systemctl start docker-nginx-proxy.service
-``` 

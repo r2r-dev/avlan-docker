@@ -1,0 +1,27 @@
+[Unit]
+Description=Dockerized Avlan service
+After=docker.service docker-avlan-mysql.service docker-avlan-redis.service
+BindsTo=docker.service
+Conflicts=shutdown.target reboot.target halt.target
+ 
+[Service]
+Environment=APP='avlan'
+TimeoutStartSec=0
+TimeoutStopSec=30
+Restart=always
+RestartSec=10
+ 
+WorkingDirectory=$INSTALL_DIR
+ 
+ExecStartPre=-/usr/bin/docker-compose -f docker-compose.yml kill ${DOLLAR}APP
+ExecStartPre=-/usr/bin/docker-compose -f docker-compose.yml rm ${DOLLAR}APP
+ExecStartPre=-/usr/bin/docker-compose -f docker-compose.yml rm -f ${DOLLAR}APP
+ 
+ExecStart=/usr/bin/docker-compose -f docker-compose.yml up --force-recreate --no-deps ${DOLLAR}APP
+ 
+ExecStop=/usr/bin/docker-compose -f docker-compose.yml stop ${DOLLAR}APP
+ 
+NotifyAccess=all
+ 
+[Install]
+WantedBy=multi-user.target

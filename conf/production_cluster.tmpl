@@ -2,7 +2,7 @@ version: "2"
 
 services:
   avlan-mysql:
-    build: ${INSTALL_DIR}/docker/avlan-mysql
+    build: ${SETUP_DIR}/docker/avlan-mysql
     image: avlan-mysql:latest
     container_name: "avlan-mysql"
     environment:
@@ -14,14 +14,14 @@ services:
       - ${INSTALL_DIR}/run/production/mysql/:/var/lib/mysql
 
   avlan-redis:
-    build: ${INSTALL_DIR}/docker/avlan-redis
+    build: ${SETUP_DIR}/docker/avlan-redis
     image: avlan-redis:latest
     container_name: "avlan-redis"
     ports:
       - "${REDIS_PORT}:${REDIS_PORT}"
 
   avlan:
-    build: ${INSTALL_DIR}/docker/avlan
+    build: ${SETUP_DIR}/docker/avlan
     image: avlan:latest
     depends_on:
       - avlan-mysql
@@ -31,6 +31,7 @@ services:
     ports:
       - "${APP_PORT}:${APP_PORT}"
     environment:
+      - APP_PORT=${APP_PORT}
       - MYSQL_HOST=mysql.internal
       - MYSQL_PORT=${MYSQL_PORT}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
@@ -50,7 +51,7 @@ services:
     command: /bin/avlan-start.sh
 
   avlan-nginx:
-    build: ${INSTALL_DIR}/docker/avlan-nginx
+    build: ${SETUP_DIR}/docker/avlan-nginx
     image: avlan-nginx:latest
     depends_on:
       - avlan

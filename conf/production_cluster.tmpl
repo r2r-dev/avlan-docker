@@ -11,7 +11,7 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_PORT}
     volumes:
-      - ${INSTALL_DIR}/run/production/mysql/:/var/lib/mysql
+      - ${INSTALL_DIR}/run/production/mysql/:/var/lib/mysql:z
 
   avlan-redis:
     build: ${SETUP_DIR}/docker/avlan-redis
@@ -43,8 +43,8 @@ services:
     links:
       - avlan-mysql
     volumes:
-      - ${INSTALL_DIR}/run/production/avlan/storage:/app/storage
-      - ${INSTALL_DIR}/run/production/avlan/webroot:/app/webroot
+      - ${INSTALL_DIR}/run/production/avlan/storage:/app/storage:z
+      - ${INSTALL_DIR}/run/production/avlan/webroot:/app/webroot:z
     external_links:
       - avlan-mysql:mysql.internal
       - avlan-redis:redis.internal

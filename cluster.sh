@@ -72,7 +72,12 @@ function run_cluster() {
 function cleanup() {
   source ./conf/production_cluster.conf
   prepare_config
-  docker-compose -f "${TEMP_CONFIG}" --rmi all
+  docker rm $(docker ps -q -f status=exited) || true
+  docker rmi $(docker images -q -f "dangling=true") || true
+  docker-compose -f "${TEMP_CONFIG}" stop
+  docker-compose -f "${TEMP_CONFIG}" kill
+  docker-compose -f "${TEMP_CONFIG}" rm -vf
+  docker-compose -f "${TEMP_CONFIG}" down --rmi all
 }
 
 function print_help() {
@@ -89,7 +94,7 @@ then
   print_help
 fi
 
-while getopts ":pid" opt; do
+while getopts ":pidc" opt; do
   case $opt in
     p)
       run_production_cluster 
